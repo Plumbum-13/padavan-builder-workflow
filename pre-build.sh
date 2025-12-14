@@ -1,12 +1,11 @@
 sed -i \
-'s/TPLINK_FLASHLAYOUT=8Mmtk/TPLINK_FLASHLAYOUT=16Mmtk/' \
-padavan-ng/trunk/configs/boards/TPLINK/TL_WR840N-V4_USB/board.mk
-
-sed -i \
 -e 's/^CONFIG_RT2880_FLASH_8M=y/# CONFIG_RT2880_FLASH_8M is not set/' \
 -e 's/^# CONFIG_RT2880_FLASH_16M is not set/CONFIG_RT2880_FLASH_16M=y/' \
 padavan-ng/trunk/configs/boards/TPLINK/TL_WR840N-V4_USB/kernel-3.4.x.config
 
+sed -i \
+'s/TPLINK_FLASHLAYOUT=8Mmtk/TPLINK_FLASHLAYOUT=16Mmtk/' \
+padavan-ng/trunk/configs/boards/TPLINK/TL_WR840N-V4_USB/board.mk
 
 sed -i \
 -e 's/size:[[:space:]]*0x780000,/size:\t0xF80000,/' \
