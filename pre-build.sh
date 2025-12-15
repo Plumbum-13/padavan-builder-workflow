@@ -1,3 +1,7 @@
+CFG_BASE="padavan-ng/trunk/configs/boards/TPLINK/TL_WR840N-V4_USB"
+TPLINK_BASE="padavan-ng/trunk/configs/boards/TPLINK"
+TOOLS_BASE="padavan-ng/trunk/tools/mktplinkfw"
+
 # kernel config
 sed -i \
   -e 's/^CONFIG_RT2880_FLASH_8M=y/# CONFIG_RT2880_FLASH_8M is not set/' \
