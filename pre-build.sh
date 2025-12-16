@@ -1,4 +1,4 @@
-CFG_BASE="padavan-ng/trunk/configs/boards/TPLINK/TL_WR840N-V4_USB"
+CFG_BASE="padavan-ng/trunk/configs/boards/TPLINK/TL_C20-V4"
 TPLINK_BASE="padavan-ng/trunk/configs/boards/TPLINK"
 TOOLS_BASE="padavan-ng/trunk/tools/mktplinkfw"
 
@@ -14,13 +14,13 @@ sed -i 's/TPLINK_FLASHLAYOUT=8Mmtk/TPLINK_FLASHLAYOUT=16Mmtk/' \
 
 # partition table
 sed -i \
-  -e 's/size:[[:space:]]*0x780000/size: 0xF80000/' \
-  -e 's/offset:[[:space:]]*0x7A0000/offset: 0xFA0000/' \
+  -e 's/size:[[:space:]]*0x760000/size: 0xF60000/' \
+  -e 's/offset:[[:space:]]*0x780000/offset: 0xF80000/' \
   -e 's/offset:[[:space:]]*0x7C0000/offset: 0xFC0000/' \
   -e 's/offset:[[:space:]]*0x7D0000/offset: 0xFD0000/' \
   -e 's/offset:[[:space:]]*0x7E0000/offset: 0xFE0000/' \
   -e 's/offset:[[:space:]]*0x7F0000/offset: 0xFF0000/' \
-  "$TPLINK_BASE/pt_tplink_8m.config"
+  "$TPLINK_BASE/pt_tplink_8m_bigstor.config"
 
 # mktplinkfw
 sed -i \
