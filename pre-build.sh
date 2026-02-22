@@ -1,8 +1,11 @@
-sed -i \
- -e 's/^CONFIG_RAETH_ESW_PORT_WAN=4$/CONFIG_RAETH_ESW_PORT_WAN=0/' \
- -e 's/^CONFIG_RAETH_ESW_PORT_LAN1=0$/CONFIG_RAETH_ESW_PORT_LAN1=1/' \
- -e 's/^CONFIG_RAETH_ESW_PORT_LAN2=1$/CONFIG_RAETH_ESW_PORT_LAN2=2/' \
- -e 's/^CONFIG_RAETH_ESW_PORT_LAN3=2$/CONFIG_RAETH_ESW_PORT_LAN3=3/' \
- -e 's/^CONFIG_RAETH_ESW_PORT_LAN4=3$/CONFIG_RAETH_ESW_PORT_LAN4=4/' \
- padavan-ng/trunk/configs/boards/TPLINK/TL_WR841N-V14/kernel-3.4.x.config
- 
+# Настройка версии прошивки
+sed -i 's/^FIRMWARE_ROOTFS_VER.*/FIRMWARE_ROOTFS_VER=3.9L/' padavan-ng/trunk/versions.inc
+sed -i 's/^FIRMWARE_BUILDS_VER.*/FIRMWARE_BUILDS_VER=102/' padavan-ng/trunk/versions.inc
+
+# Установка последней версии zapret
+ZAPRET_REPO="https://github.com/bol-van/zapret.git"
+ZAPRET_TAGS=$(git ls-remote --tags "$ZAPRET_REPO" | awk '{print $2}' | sed 's/refs\/tags\///g')
+ZAPRET_VER=$(echo "$ZAPRET_TAGS" | sort -V | tail -n 1 | sed 's/^.//')
+sed -i "s/^SRC_VER.*/SRC_VER = $ZAPRET_VER/g" padavan-ng/trunk/user/nfqws/Makefile
+cd padavan-ng/trunk/user/nfqws
+find . -maxdepth 1 -not -name Makefile -not -name patches -print0 | xargs -0 rm -rf --
